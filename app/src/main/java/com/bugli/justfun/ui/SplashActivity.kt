@@ -28,7 +28,7 @@ class SplashActivity : Activity() {
         setContentView(R.layout.activity_splash)
         GlobalScope.launch {
             LogUtil.d(TAG, "delay: ")
-            delay(2000)
+            delay(500)
             jump2MainActivity()
         }
 

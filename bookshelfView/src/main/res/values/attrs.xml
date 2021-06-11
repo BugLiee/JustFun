@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BookShelfView自定义属性 -->
+    <declare-styleable name="bookShelfViewStyle">
+<!--        <attr name="content" format="string" />
+        <attr name="isShow" format="boolean" />
+        <attr name="background" format="color" />
+        <attr name="select">
+            <flag name="s1" value="1" />
+            <flag name="s2" value="2" />
+            <flag name="s3" value="3" />
+        </attr>-->
+    </declare-styleable>
+</resources>

@@ -1,2 +1,3 @@
+include ':bookshelfView'
 include ':app'
 rootProject.name = "JustFun"

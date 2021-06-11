@@ -4,10 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import com.bugli.bookshelfview.bean.Book
+import com.bugli.bookshelfview.utils.PYBookUtil
 import com.bugli.justfun.R
 import com.bugli.justfun.common.Constants.Companion.preTAG
 import com.bugli.justfun.utils.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private val TAG = preTAG + "MainActivity"
@@ -16,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         LogUtil.d(TAG, "onCreate: ")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        GlobalScope.launch {
+            PYBookUtil.getAllBooksFromAllWebSites()
+        }
+
     }
 
 
