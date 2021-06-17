@@ -1,5 +1,7 @@
 package com.bugli.bookshelfview.utils;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import java.io.BufferedReader;
@@ -9,7 +11,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 public class HttpRequestUtil {
 
@@ -19,7 +24,7 @@ public class HttpRequestUtil {
      * @param httpUrl 连接
      * @return 响应数据
      */
-    public static String doGet(String httpUrl) {
+    public static String doGet(String httpUrl, String charset) {
         //链接
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -37,15 +42,19 @@ public class HttpRequestUtil {
             connection.connect();
             //获取响应数据
             if (connection.getResponseCode() == 200) {
+                //正常返回数据
                 //获取返回的数据
                 is = connection.getInputStream();
                 if (null != is) {
-                    br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    br = new BufferedReader(new InputStreamReader(is, charset));
                     String temp = null;
                     while (null != (temp = br.readLine())) {
                         result.append(temp);
                     }
                 }
+            } else if (connection.getResponseCode() == 301) {
+                //重定向 301
+                return doGet(getRedirectUrl(httpUrl), charset);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -161,4 +170,26 @@ public class HttpRequestUtil {
         }
         return result.toString();
     }
+
+    /**
+     * 获取重定向地址
+     *
+     * @param path
+     * @return
+     * @throws Exception
+     */
+    public static String getRedirectUrl(String path) {
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) new URL(path)
+                    .openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        conn.setInstanceFollowRedirects(false);
+        conn.setConnectTimeout(5000);
+        return conn.getHeaderField("Location");
+    }
+
+
 }

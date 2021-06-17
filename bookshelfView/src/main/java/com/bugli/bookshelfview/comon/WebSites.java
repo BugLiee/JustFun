@@ -10,6 +10,8 @@ public class WebSites {
     //初始化列表
     WebSites() {
         websiteList.put("新笔趣阁", "https://www.xbiquge.la");
+        websiteList.put("书荒阁", "https://www.shuhuangge.org");
+        websiteList.put("红叶书斋", "https://www.hongyeshuzhai.com");
     }
 
 

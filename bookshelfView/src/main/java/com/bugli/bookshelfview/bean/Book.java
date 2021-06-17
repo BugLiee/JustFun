@@ -1,5 +1,6 @@
 package com.bugli.bookshelfview.bean;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,21 +15,21 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "description='" + description + '\'' +
-                ", bookName='" + bookName + '\'' +
-                ", author='" + author + '\'' +
-                ", category='" + category + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", chapterList=" + chapterList +
-                ", indexLink='" + indexLink + '\'' +
-                ", newChapter=" + Arrays.toString(newChapter) +
-                ", netImg='" + netImg + '\'' +
-                ", cacheLocPath='" + cacheLocPath + '\'' +
-                ", lastReadChapter=" + Arrays.toString(lastReadChapter) +
-                ", markChapter=" + Arrays.toString(markChapter) +
-                ", currentWebSite='" + currentWebSite + '\'' +
-                ", allWebSite=" + allWebSite +
+        return "Book{" + "\n" +
+                "description='" + description + '\'' + "\n" +
+                ", bookName='" + bookName + '\'' + "\n" +
+                ", author='" + author + '\'' + "\n" +
+                ", category='" + category + '\'' + "\n" +
+                ", keyword='" + keyword + '\'' + "\n" +
+                ", chapterList=" + chapterList + "\n" +
+                ", indexLink='" + indexLink + '\'' + "\n" +
+                ", newChapter=" + Arrays.toString(newChapter) + "\n" +
+                ", netImg='" + netImg + '\'' + "\n" +
+                ", cacheLocPath='" + cacheLocPath + '\'' + "\n" +
+                ", lastReadChapter=" + Arrays.toString(lastReadChapter) + "\n" +
+                ", markChapter=" + Arrays.toString(markChapter) + "\n" +
+                ", currentWebSite='" + currentWebSite + '\'' + "\n" +
+                ", allWebSite=" + allWebSite + "\n" +
                 '}';
     }
 
@@ -160,6 +161,9 @@ public class Book {
     }
 
     public List<String> getAllWebSite() {
+        if (allWebSite == null) {
+            allWebSite = new ArrayList<>();
+        }
         return allWebSite;
     }
 
